@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgencyRail desk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <div>
+          <strong id="agency-name">AgencyRail</strong>
+          <em id="agency-tag">Crypto-native AI agency ops</em>
+        </div>
+      </div>
+      <p class="operator" id="operator-line">Kevin Lance Murray</p>
+      <div class="top-actions">
+        <button type="button" id="btn-digest" class="ghost">Weekly digest</button>
+        <button type="button" id="btn-invoices" class="ghost">Invoices</button>
+        <button type="button" id="btn-new" class="solid">New intake</button>
+      </div>
+    </header>
+
+    <section class="stations" id="stations" aria-label="Rail stations"></section>
+
+    <main class="desk">
+      <section class="board">
+        <div class="board-head">
+          <h1>Rail</h1>
+          <label class="search">
+            <span>Filter</span>
+            <input id="search" type="search" placeholder="org, contact, slug" />
+          </label>
+        </div>
+        <div id="lead-list" class="lead-list"></div>
+      </section>
+
+      <section class="detail" id="detail">
+        <div class="empty-detail">
+          <p>Select a lead. Agents grind the audit, mockup, outreach, and Loom. You close.</p>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="modal-new" class="modal">
+      <form id="form-new" method="dialog">
+        <header>
+          <h2>New intake</h2>
+          <button type="button" class="icon" data-close="modal-new" aria-label="Close">×</button>
+        </header>
+        <div class="grid">
+          <label>Contact <input name="name" required placeholder="Ava Chen" /></label>
+          <label>Org <input name="org" required placeholder="Helios Wallet" /></label>
+          <label>
+            Segment
+            <select name="segment" required>
+              <option value="wallet">wallet</option>
+              <option value="dapp">dapp</option>
+              <option value="protocol">protocol</option>
+              <option value="docs">docs</option>
+            </select>
+          </label>
+          <label>
+            Chain
+            <select name="chain">
+              <option value="solana">solana</option>
+              <option value="evm">evm</option>
+              <option value="bitcoin">bitcoin</option>
+              <option value="sui">sui</option>
+              <option value="multi" selected>multi</option>
+            </select>
+          </label>
+          <label>Email <input name="email" type="email" placeholder="ava@protocol.xyz" /></label>
+          <label>Telegram <input name="telegram" placeholder="@handle" /></label>
+          <label>X <input name="twitter" placeholder="@handle" /></label>
+          <label>Website <input name="website" placeholder="https://" /></label>
+          <label class="wide">Notes <textarea name="notes" rows="3" placeholder="What leaked on first session?"></textarea></label>
+        </div>
+        <footer>
+          <button type="button" class="ghost" data-close="modal-new">Cancel</button>
+          <button type="submit" class="solid">Open on the rail</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="modal-digest" class="modal wide">
+      <form method="dialog">
+        <header>
+          <h2>Weekly Telegram digest</h2>
+          <button type="button" class="icon" data-close="modal-digest" aria-label="Close">×</button>
+        </header>
+        <pre id="digest-text" class="artifact"></pre>
+        <footer>
+          <p class="hint" id="digest-path"></p>
+          <button type="button" class="ghost" data-close="modal-digest">Close</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="modal-invoices" class="modal wide">
+      <form method="dialog">
+        <header>
+          <h2>Invoices</h2>
+          <button type="button" class="icon" data-close="modal-invoices" aria-label="Close">×</button>
+        </header>
+        <div id="invoice-list" class="invoice-list"></div>
+        <footer>
+          <button type="button" class="ghost" data-close="modal-invoices">Close</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script src="/static/app.js" type="module"></script>
+  </body>
+</html>

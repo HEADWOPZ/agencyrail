@@ -1,0 +1,34 @@
+# Outreach — {{ lead.org }}
+
+**From:** {{ operator.name }} \<{{ operator.email }}\>  
+**To:** {{ lead.name }}{% if lead.email %} \<{{ lead.email }}\>{% endif %}  
+**Channel:** email first, Telegram follow ({{ operator.telegram }})
+
+## Subject lines
+
+{% for subject in subjects %}
+{{ loop.index }}. {{ subject }}
+{% endfor %}
+
+## Body
+
+{{ lead.name.split(' ')[0] }} —
+
+{{ hook }}
+
+I am not pitching a retainer deck. I already mocked the first-session path: {{ offer | lower }}.
+
+If it is useful, I will send a 90-second Loom and the brief. If it is not, tell me and I will leave you alone.
+
+12 minutes on Telegram ({{ operator.telegram }}) this week?
+
+{{ operator.name }}  
+{{ agency.name }} · {{ operator.x }}
+
+P.S. I work with wallet, dApp, and docs teams. The grind is agents. The close is me.
+
+## Send checklist
+
+- [ ] Personalize one line from their latest tweet or release
+- [ ] Attach or link the Loom
+- [ ] Follow once on X, once on Telegram, then stop

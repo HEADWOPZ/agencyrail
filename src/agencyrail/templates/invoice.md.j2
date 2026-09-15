@@ -1,0 +1,36 @@
+# Invoice {{ invoice_number }}
+
+**From:** {{ operator.name }} · {{ agency.name }}  
+**Email:** {{ operator.email }}  
+**To:** {{ lead.name }} · {{ lead.org }}  
+{% if lead.email %}**Bill to:** {{ lead.email }}  
+{% endif %}
+**Issued:** {{ issued_on }}  
+**Due:** {{ due_on }}  
+**Status:** draft
+
+## Line items
+
+| Description | Qty | Amount |
+| --- | --- | --- |
+| {{ lead.segment | title }} retainer — {{ cadence }} ({{ lead.chain }}) | 1 | {{ currency }} {{ amount }} |
+
+**Total due: {{ currency }} {{ amount }}**
+
+## Pay
+
+{% if stripe_url %}
+Stripe Checkout (stub): {{ stripe_url }}
+
+This is a stub payment link for local ops. Swap `stripe_mode` and the URL when live keys exist.
+{% else %}
+Manual settlement. Reply to {{ operator.email }} or {{ operator.telegram }} for wire details.
+{% endif %}
+
+## Scope (this cycle)
+
+Visibility audit, mockup brief, outreach assets, and weekly operator digest for {{ lead.org }}.
+
+## Notes
+
+Net {{ (due_on and '7') or '7' }}. Work starts when this invoice is marked paid on the rail.

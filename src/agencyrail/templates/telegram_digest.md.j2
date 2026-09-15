@@ -1,0 +1,50 @@
+# AgencyRail weekly · {{ week_of }}
+
+Operator: {{ operator.name }} ({{ operator.handle }})
+
+## Rail
+
+{% for station in stations %}
+- **{{ station }}:** {{ counts[station] }}
+{% endfor %}
+
+**Outstanding:** {{ agency.currency }} {{ outstanding }}  
+**Collected (all-time paid):** {{ agency.currency }} {{ collected }}
+
+## Hot
+
+{% if hot %}
+{% for lead in hot %}
+- **{{ lead.org }}** [{{ lead.status }}] — {{ lead.next_action }}
+{% endfor %}
+{% else %}
+- Nothing in outreach / negotiation / retainer. Fill the rail.
+{% endif %}
+
+## New this week
+
+{% if new_leads %}
+{% for lead in new_leads %}
+- {{ lead.org }} ({{ lead.segment }} / {{ lead.chain }}) — {{ lead.name }}
+{% endfor %}
+{% else %}
+- No new intake.
+{% endif %}
+
+## Agent grind
+
+{{ agent_runs | length }} jobs ran in the last 7 days.
+
+## Open invoices
+
+{% if open_invoices %}
+{% for invoice in open_invoices %}
+- {{ invoice.number }} · {{ invoice.currency }} {{ '%.2f' % (invoice.amount_cents / 100) }} · {{ invoice.status }} · due {{ invoice.due_on }}
+{% endfor %}
+{% else %}
+- None open.
+{% endif %}
+
+## Operator note
+
+Reply in Telegram if a lead should move. Otherwise run the next audit.

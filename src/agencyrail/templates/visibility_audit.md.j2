@@ -1,0 +1,53 @@
+# Visibility audit — {{ lead.org }}
+
+**Score:** {{ result.score }}/100  
+**Headline:** {{ result.headline }}  
+**Segment:** {{ lead.segment }} · {{ lead.chain }}  
+**Operator:** {{ operator.name }} ({{ operator.handle }})
+
+## Client snapshot
+
+| Field | Value |
+| --- | --- |
+| Contact | {{ lead.name }} |
+| Email | {{ lead.email or "—" }} |
+| X | {{ lead.twitter or "—" }} |
+| Telegram | {{ lead.telegram or "—" }} |
+| Site | {{ lead.website or "—" }} |
+| Notes | {{ lead.notes or "—" }} |
+
+## What is working
+
+{% if result.strengths %}
+{% for item in result.strengths %}
+- {{ item }}
+{% endfor %}
+{% else %}
+- Almost nothing public is on file. Treat this as a dark-room brief, not a polish pass.
+{% endif %}
+
+## Findings
+
+{% for finding in result.findings %}
+### {{ finding.severity | upper }} — {{ finding.title }}
+
+{{ finding.detail }}
+
+{% endfor %}
+
+## Recommended 7-day mockup
+
+Ship a trust path, not a rebrand:
+
+1. One hero that states who this is for and what it never asks for.
+2. Connect / intent / mismatch states for a {{ lead.chain }} session.
+3. A 90-second doc: install → connect → harmless sign.
+
+## Commercial
+
+Suggested retainer: **{{ agency.currency }} {{ amount }} / {{ lead.retainer_cadence }}**  
+This is a working number for a solo AI agency sprint (visibility + mockup + weekly Loom), not a media buy.
+
+## Next action
+
+{{ lead.next_action or "Turn findings into a mockup brief." }}

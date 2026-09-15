@@ -1,0 +1,32 @@
+# Loom script — {{ lead.org }} (90 seconds)
+
+**Presenter:** {{ operator.name }}  
+**Goal:** Get {{ lead.name }} to a 12-minute Telegram, not a yes on the video.
+
+{% for beat in beats %}
+## {{ beat.name }} · {{ beat.seconds }}
+
+{{ beat.line }}
+
+{% endfor %}
+
+## Spoken draft
+
+"{{ lead.name.split(' ')[0] }}, I am {{ operator.name }}. I spent an hour on {{ lead.org }} the way a cautious {{ lead.chain }} user would.
+
+You are leaking trust before the first signature. I mocked the path anyway: {{ offer | lower }}.
+
+Three screens. No rebrand. If you want the brief, I am on Telegram {{ operator.telegram }} for twelve minutes this week."
+
+## Shot list
+
+1. Their live site or docs (2–3 seconds, honest).
+2. Your mockup hero.
+3. Connect or quickstart frame.
+4. Your face + the ask.
+
+## Do not
+
+- Do not apologize for the cold note.
+- Do not pitch "AI agency" as the product.
+- Do not go past 90 seconds.
