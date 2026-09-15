@@ -223,10 +223,33 @@ async function openInvoices() {
           <div>
             <div>${esc(invoice.currency)} ${esc(invoice.amount)}</div>
             <div class="${invoice.status === "paid" ? "ok" : "warn"}">${esc(invoice.status)}</div>
+            ${
+              invoice.status === "draft"
+                ? `<button type="button" class="ghost" data-inv-send="${esc(invoice.number)}">Mark sent</button>`
+                : ""
+            }
+            ${
+              invoice.status !== "paid" && invoice.status !== "void"
+                ? `<button type="button" class="ghost" data-inv-pay="${esc(invoice.number)}">Mark paid</button>`
+                : ""
+            }
           </div>
         </div>`
       )
       .join("");
+    root.querySelectorAll("[data-inv-send]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        await api(`/api/invoices/${btn.dataset.invSend}/send`, { method: "POST" });
+        await openInvoices();
+      });
+    });
+    root.querySelectorAll("[data-inv-pay]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        await api(`/api/invoices/${btn.dataset.invPay}/pay`, { method: "POST" });
+        await refresh();
+        await openInvoices();
+      });
+    });
   }
   $("modal-invoices").showModal();
 }

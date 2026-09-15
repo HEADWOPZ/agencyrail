@@ -188,13 +188,23 @@ h3 {
 .search input,
 .grid input,
 .grid select,
-.grid textarea {
+.grid textarea,
+.detail-head select {
   width: 100%;
   margin-top: 4px;
   background: var(--bg-3);
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 8px 10px;
+}
+
+.detail-head label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.detail-head select {
+  min-width: 160px;
 }
 
 .lead-list {
@@ -263,6 +273,14 @@ h3 {
   display: flex;
   gap: 6px;
   margin: 8px 0 12px;
+}
+
+.tabs button {
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  padding: 7px 12px;
+  text-transform: capitalize;
 }
 
 .tabs button.active {

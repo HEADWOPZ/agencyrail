@@ -51,6 +51,24 @@ def test_lead_run_invoice_digest_api(desk):
     assert overview.json()["counts"]["audit"] >= 1
 
 
+def test_invoice_send_and_pay_api(desk):
+    created = desk.post(
+        "/api/leads",
+        json={"name": "Eli Navarro", "org": "Vaultkeep", "segment": "wallet", "chain": "multi"},
+    )
+    slug = created.json()["slug"]
+    invoice = desk.post(f"/api/leads/{slug}/invoices", json={"amount": "6000"})
+    number = invoice.json()["number"]
+    sent = desk.post(f"/api/invoices/{number}/send")
+    assert sent.status_code == 200
+    assert sent.json()["status"] == "sent"
+    paid = desk.post(f"/api/invoices/{number}/pay")
+    assert paid.status_code == 200
+    assert paid.json()["status"] == "paid"
+    lead = desk.get(f"/api/leads/{slug}")
+    assert lead.json()["lead"]["status"] == "retainer"
+
+
 def test_bad_segment_rejected(desk):
     response = desk.post(
         "/api/leads",
